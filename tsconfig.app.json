@@ -8,7 +8,7 @@
   },
   "include": [
     "src/**/*.ts"
-  ],
+, "src/app/modules/admin/admin-sidebar.component"  ],
   "exclude": [
     "src/**/*.spec.ts"
   ]

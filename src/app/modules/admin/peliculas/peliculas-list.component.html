@@ -1,0 +1,19 @@
+<div class="card shadow-sm p-4">
+  <h4 class="mb-3 text-primary">Peliculas registradas</h4>
+  <table class="table table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Capacidad</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let s of peliculas">
+        <td>{{ s.id }}</td>
+        <td>{{ s.nombre }}</td>
+        <td>{{ s.capacidad }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
