@@ -1,0 +1,24 @@
+<div class="container vh-100 d-flex justify-content-center align-items-center">
+  <div class="card shadow-lg p-4" style="max-width: 400px; width: 100%;">
+    <h3 class="text-center mb-4 text-primary fw-bold">Editar perfil</h3>
+    <form (ngSubmit)="saveChanges()">
+      <div class="mb-3">
+        <label class="form-label">Nombre</label>
+        <input type="text" class="form-control" [(ngModel)]="user.nombre" name="nombre" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Correo</label>
+        <input type="email" class="form-control" [(ngModel)]="user.correo" name="correo" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Contraseña</label>
+        <input type="password" class="form-control" [(ngModel)]="user.password" name="password">
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100">Guardar cambios</button>
+      <a routerLink="/perfil" class="btn btn-outline-secondary w-100 mt-2">Volver</a>
+    </form>
+  </div>
+</div>

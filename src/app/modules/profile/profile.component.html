@@ -1,0 +1,23 @@
+<div class="container py-5">
+  <div class="card mx-auto shadow-lg p-4" style="max-width: 500px;">
+    <h3 class="text-center text-primary mb-4">Perfil de Usuario</h3>
+
+    <div *ngIf="user; else noUser">
+      <p><strong>Nombre:</strong> {{ user.nombre }}</p>
+      <p><strong>Correo:</strong> {{ user.correo }}</p>
+      <p><strong>Rol:</strong> {{ user.rol }}</p>
+
+      <div class="d-flex gap-2 mt-4">
+        <a routerLink="/perfil/editar" class="btn btn-outline-primary w-50">Editar perfil</a>
+        <button class="btn btn-danger w-50" (click)="auth.logout()">Cerrar sesión</button>
+      </div>
+    </div>
+
+    <ng-template #noUser>
+      <div class="alert alert-warning text-center">
+        No hay usuario cargado.
+        <a routerLink="/login" class="alert-link">Iniciar sesión</a>
+      </div>
+    </ng-template>
+  </div>
+</div>

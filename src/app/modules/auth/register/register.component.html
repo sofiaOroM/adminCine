@@ -1,0 +1,33 @@
+<div class="container vh-100 d-flex justify-content-center align-items-center">
+  <div class="card shadow-lg p-4" style="max-width: 420px; width: 100%;">
+    <h3 class="text-center mb-4 text-success fw-bold">Crear Cuenta</h3>
+    <form (ngSubmit)="register()">
+      <div class="mb-3">
+        <label class="form-label">Nombre completo</label>
+        <input type="text" class="form-control" [(ngModel)]="user.nombre" name="nombre" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Correo electrónico</label>
+        <input type="email" class="form-control" [(ngModel)]="user.correo" name="correo" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Contraseña</label>
+        <input type="password" class="form-control" [(ngModel)]="user.password" name="password" required>
+      </div>
+
+      <!-- Tipo de usuario por defecto: cliente -->
+      <!--<div class="mb-3">
+        <label class="form-label">Tipo de usuario</label>
+        <input type="text" class="form-control" [(ngModel)]="user.rol" name="rol" readonly>
+      </div>-->
+
+      <button type="submit" class="btn btn-success w-100 mb-2">Registrar</button>
+      <a routerLink="/login" class="btn btn-outline-secondary w-100">Volver al inicio</a>
+
+      <div *ngIf="error" class="alert alert-danger text-center mt-3">{{ error }}</div>
+      <div *ngIf="success" class="alert alert-success text-center mt-3">{{ success }}</div>
+    </form>
+  </div>
+</div>
