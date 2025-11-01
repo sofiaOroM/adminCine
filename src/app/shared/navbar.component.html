@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+  <div class="container">
+    <a class="navbar-brand fw-bold" routerLink="/"> AdminCine</a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <!-- Si el usuario está autenticado -->
+        <li *ngIf="auth.isAuthenticated()" class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="userMenu" role="button" data-bs-toggle="dropdown">
+            {{ auth.currentUser?.nombre }}
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" routerLink="/perfil">Perfil</a></li>
+            <li><a class="dropdown-item" routerLink="/perfil/editar">Editar perfil</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><button class="dropdown-item text-danger" (click)="logout()">Cerrar sesión</button></li>
+          </ul>
+        </li>
+
+        <!-- Si NO está autenticado -->
+        <ng-container *ngIf="!auth.isAuthenticated()">
+          <li class="nav-item"><a class="nav-link" routerLink="/login">Iniciar sesión</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="/registro">Registrarse</a></li>
+        </ng-container>
+      </ul>
+    </div>
+  </div>
+</nav>
