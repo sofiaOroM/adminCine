@@ -10,6 +10,8 @@ import { SalasListComponent } from './modules/admin/salas/salas-list.component';
 import { PeliculasListComponent } from './modules/admin/peliculas/peliculas-list.component';
 import { FuncionesListComponent } from './modules/admin/funciones/funciones-list.component';
 import { SalaFormComponent } from './modules/admin/salas/sala-form.component';
+import { PeliculaFormComponent } from './modules/admin/peliculas/pelicula-form.component';
+import { FuncionFormComponent } from './modules/admin/funciones/funcion-form.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -26,7 +28,11 @@ export const routes: Routes = [
             { path: 'salas/nueva', component: SalaFormComponent },
             { path: 'salas/editar/:id', component: SalaFormComponent },
             { path: 'peliculas', component: PeliculasListComponent },
+            { path: 'peliculas/nueva', component: PeliculaFormComponent },
+            { path: 'peliculas/editar/:id', component: PeliculaFormComponent },
             { path: 'funciones', component: FuncionesListComponent },
+            { path: 'funciones/nueva', component: FuncionFormComponent },
+            { path: 'funciones/editar/:id', component: FuncionFormComponent },
             { path: '', redirectTo: 'salas', pathMatch: 'full' }
         ]
     }

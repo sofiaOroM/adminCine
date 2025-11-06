@@ -21,7 +21,7 @@
 
         <div class="d-flex justify-content-end">
             <button type="submit" class="btn btn-success me-2">Guardar</button>
-            <a routerLink="/admin/salas" class="btn btn-secondary">Cancelar</a>
+            <button type="button" class="btn btn-secondary" (click)="router.navigate(['/admin/salas'])">Cancelar</button>
         </div>
     </form>
 </div>

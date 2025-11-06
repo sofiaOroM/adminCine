@@ -1,18 +1,33 @@
 <div class="card shadow-sm p-4">
-  <h4 class="mb-3 text-primary">Peliculas registradas</h4>
-  <table class="table table-hover">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h4 class="text-primary m-0">Películas registradas</h4>
+    <a routerLink="/admin/peliculas/nueva" class="btn btn-success btn-sm">Nueva película</a>
+  </div>
+
+  <table class="table table-hover align-middle">
     <thead class="table-dark">
       <tr>
         <th>ID</th>
-        <th>Nombre</th>
-        <th>Capacidad</th>
+        <th>Título</th>
+        <th>Género</th>
+        <th>Duración (min)</th>
+        <th>Clasificación</th>
+        <th>Sinopsis</th>
+        <th class="text-center">Acciones</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let s of peliculas">
-        <td>{{ s.id }}</td>
-        <td>{{ s.nombre }}</td>
-        <td>{{ s.capacidad }}</td>
+      <tr *ngFor="let p of peliculas">
+        <td>{{ p.id }}</td>
+        <td>{{ p.titulo }}</td>
+        <td>{{ p.genero }}</td>
+        <td>{{ p.duracion }}</td>
+        <td>{{ p.clasificacion }}</td>
+        <td>{{ p.sinopsis }}</td>
+        <td class="text-center">
+          <a [routerLink]="['/admin/peliculas/editar', p.id]" class="btn btn-outline-primary btn-sm me-2">Editar</a>
+          <button class="btn btn-outline-danger btn-sm" (click)="eliminarPelicula(p.id)">Eliminar</button>
+        </td>
       </tr>
     </tbody>
   </table>
