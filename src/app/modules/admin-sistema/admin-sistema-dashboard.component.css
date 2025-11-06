@@ -1,0 +1,9 @@
+.nav-link {
+    border-radius: 8px;
+    margin: 2px 0;
+    transition: background 0.2s;
+}
+
+.nav-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
