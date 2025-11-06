@@ -1,0 +1,30 @@
+<div class="card shadow-sm p-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="text-primary">Cines registrados</h4>
+        <a routerLink="/admin-sistema/cines/nuevo" class="btn btn-success btn-sm">Nuevo cine</a>
+    </div>
+    
+    <table class="table table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Dirección</th>
+                <th>Administrador</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let c of cines">
+                <td> {{ c.id }} </td>
+                <td> {{ c.nombre }} </td>
+                <td> {{ c.direccion }}</td>
+                <td> {{ c.administrador }}</td>
+                <td>
+                    <a routerLink="/admin-sistema/cines/editar/{{c.id}}" class="btn btn-outline-primary btn-sm me-2">editar</a>
+                    <button class="btn btn-outline-danger btn-sm"(click)="eliminar(c.id)">Eliminar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

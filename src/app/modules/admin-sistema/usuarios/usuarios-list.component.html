@@ -1,0 +1,19 @@
+<div class="card shadow-sm p-4">
+    <h4 class="text-primary mb-3">Usuarios registrados</h4>
+    <table class="table table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Rol</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let u of usuarios">
+                <td>{{ u.id }}</td>
+                <td>{{ u.nombre }}</td>
+                <td>{{ u.rol }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

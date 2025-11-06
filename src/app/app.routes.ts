@@ -5,6 +5,12 @@ import { ProfileComponent } from './modules/profile/profile.component';
 import { EditProfileComponent } from './modules/profile/edit-profile.component';
 import { AuthGuard } from './core/guards/auth.guard';
 
+import { AdminSistemaDashboardComponent } from './modules/admin-sistema/admin-sistema-dashboard.component';
+import { CinesListComponent } from './modules/admin-sistema/cines/cines-list.component';
+import { CineFormComponent } from './modules/admin-sistema/cines/cine-form.component';
+import { UsuariosListComponent } from './modules/admin-sistema/usuarios/usuarios-list.component';
+import { ReportesComponent } from './modules/admin-sistema/reportes/reportes.component';
+
 import { AdminDashboardComponent } from './modules/admin/admin-dashboard.component';
 import { SalasListComponent } from './modules/admin/salas/salas-list.component';
 import { PeliculasListComponent } from './modules/admin/peliculas/peliculas-list.component';
@@ -23,6 +29,18 @@ export const routes: Routes = [
     { path: 'registro', component: RegisterComponent },
     { path: 'perfil', component: ProfileComponent, canActivate: [AuthGuard] },
     { path: 'perfil/editar', component: EditProfileComponent, canActivate: [AuthGuard] },
+    {
+        path: 'admin-sistema',
+        component: AdminSistemaDashboardComponent,
+        children: [
+            { path: 'cines', component: CinesListComponent },
+            { path: 'cines/nuevo', component: CineFormComponent },
+            { path: 'cines/editar/:id', component: CineFormComponent },
+            { path: 'usuarios', component: UsuariosListComponent },
+            { path: 'reportes', component: ReportesComponent },
+            { path: '', redirectTo: 'cines', pathMatch: 'full' }
+        ]
+    },
     {
         path: 'admin',
         component: AdminDashboardComponent,

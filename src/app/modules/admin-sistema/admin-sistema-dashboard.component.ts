@@ -10,6 +10,6 @@ import { AuthService } from '../../core/services/auth.service';
   templateUrl: './admin-sistema-dashboard.component.html',
   styleUrls: ['./admin-sistema-dashboard.component.css']
 })
-export class AdminGeneralDashboardComponent {
+export class AdminSistemaDashboardComponent {
   constructor(public auth: AuthService) {}
 }

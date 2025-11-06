@@ -23,7 +23,7 @@ export class LoginComponent {
             next: (user: User) => {
                 switch (user.rol) {
                     case 'admin_sistema':
-                        this.router.navigate(['/admin-general']);
+                        this.router.navigate(['/admin-sistema']);
                         break;
                     case 'admin_cine':
                         this.router.navigate(['/admin']);
