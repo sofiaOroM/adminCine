@@ -1,0 +1,43 @@
+<div class="card shadow-sm p-4">
+    <h4 class="text-primary mb-3">
+        {{ modoEdicion ? 'Editar película' : 'Nueva película' }}
+    </h4>
+
+    <form (ngSubmit)="guardar()">
+        <div class="mb-3">
+            <label class="form-label">Título:</label>
+            <input type="text" class="form-control" [(ngModel)]="pelicula.titulo" name="titulo" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Género:</label>
+            <input type="text" class="form-control" [(ngModel)]="pelicula.genero" name="genero" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Duración (minutos):</label>
+            <input type="number" class="form-control" [(ngModel)]="pelicula.duracion" name="duracion" required min="1">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Clasificación:</label>
+            <select class="form-select" [(ngModel)]="pelicula.clasificacion" name="clasificacion" required>
+                <option value="">Seleccione una...</option>
+                <option>G</option>
+                <option>PG</option>
+                <option>PG-13</option>
+                <option>R</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Sinopsis:</label>
+            <textarea class="form-control" [(ngModel)]="pelicula.sinopsis" name="sinopsis" required></textarea>
+        </div>
+
+        <div class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-success me-2">Guardar</button>
+            <button type="button" class="btn btn-secondary" (click)="router.navigate(['/admin/peliculas'])">Cancelar</button>
+        </div>
+    </form>
+</div>
