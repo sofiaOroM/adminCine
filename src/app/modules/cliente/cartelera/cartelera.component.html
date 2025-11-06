@@ -1,0 +1,37 @@
+<div class="container py-4">
+  <h3 class="mb-4 text-center text-primary fw-bold">Cartelera de Funciones</h3>
+
+  <div class="mb-4 text-center">
+    <input
+      type="text"
+      [(ngModel)]="filtro"
+      (input)="filtrar()"
+      class="form-control w-50 mx-auto"
+      placeholder="Buscar película..."
+    />
+  </div>
+
+  <div class="row g-4">
+    <div class="col-md-4" *ngFor="let f of funcionesFiltradas">
+      <div class="card shadow-sm h-100">
+        <div class="card-body">
+          <h5 class="card-title text-primary">
+            {{ getPelicula(f.peliculaId)?.titulo }}
+          </h5>
+          <p class="card-text">
+            <strong>Género:</strong> {{ getPelicula(f.peliculaId)?.genero }} <br />
+            <strong>Duración:</strong> {{ getPelicula(f.peliculaId)?.duracion }} min <br />
+            <strong>Sala:</strong> {{ getSala(f.salaId)?.nombre }} <br />
+            <strong>Fecha:</strong> {{ f.fecha }} <br />
+            <strong>Hora:</strong> {{ f.hora }} <br />
+            <strong>Precio:</strong> Q{{ f.precio }}
+          </p>
+          <div class="d-flex justify-content-between">
+            <a [routerLink]="['/cliente/pelicula', f.peliculaId]" class="btn btn-outline-primary btn-sm">Detalles</a>
+            <a [routerLink]="['/cliente/reserva', f.id]" class="btn btn-success btn-sm">Reservar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

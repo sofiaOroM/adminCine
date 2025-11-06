@@ -13,6 +13,10 @@ import { SalaFormComponent } from './modules/admin/salas/sala-form.component';
 import { PeliculaFormComponent } from './modules/admin/peliculas/pelicula-form.component';
 import { FuncionFormComponent } from './modules/admin/funciones/funcion-form.component';
 
+import { CarteleraComponent } from './modules/cliente/cartelera/cartelera.component';
+import { DetallePeliculaComponent } from './modules/cliente/detalle-pelicula/detalle-pelicula.component';
+import { ReservaComponent } from './modules/cliente/reserva/reserva.component';
+
 export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
@@ -34,6 +38,15 @@ export const routes: Routes = [
             { path: 'funciones/nueva', component: FuncionFormComponent },
             { path: 'funciones/editar/:id', component: FuncionFormComponent },
             { path: '', redirectTo: 'salas', pathMatch: 'full' }
+        ]
+    },
+    {
+        path: 'cliente',
+        children: [
+            { path: 'cartelera', component: CarteleraComponent },
+            { path: 'pelicula/:id', component: DetallePeliculaComponent },
+            { path: 'reserva/:id', component: ReservaComponent },
+            { path: '', redirectTo: 'cartelera', pathMatch: 'full' }
         ]
     }
 ];
