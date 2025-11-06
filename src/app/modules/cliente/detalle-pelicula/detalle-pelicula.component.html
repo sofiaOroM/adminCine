@@ -1,0 +1,15 @@
+<div class="container py-5">
+    <div class="card shadow-sm mx-auto" style="max-width: 700px;">
+        <div class="card-body">
+            <h3 class="text-center text-primary mb-3">{{ pelicula?.titulo }}</h3>
+            <p><strong>Género:</strong> {{ pelicula?.genero }}</p>
+            <p><strong>Duración:</strong> {{ pelicula?.duracion }} minutos</p>
+            <p><strong>Clasificación:</strong> {{ pelicula?.clasificacion }}</p>
+            <p><strong>Sinopsis:</strong></p>
+            <p>{{ pelicula?.sinopsis }}</p>
+            <div class="text-center mt-3">
+                <a routerLink="/cliente/cartelera" class="btn btn-secondary">Volver a cartelera</a>
+            </div>
+        </div>
+    </div>
+</div>

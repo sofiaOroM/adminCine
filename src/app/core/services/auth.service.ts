@@ -16,7 +16,8 @@ export class AuthService {
   currentUser$ = this.currentUserSubject.asObservable();
 
   private fakeUsers: User[] = [
-    { id: 1, nombre: 'Admin Cine', correo: 'admin@cine.com', password: '123', rol: 'admin_cine' }
+    { id: 1, nombre: 'Admin Cine', correo: 'admin@cine.com', password: '123', rol: 'admin_cine' },
+    { id: 2, nombre: 'Cliente', correo: 'cliente@cine.com', password: '123', rol: 'cliente' }
   ];
 
   constructor() {

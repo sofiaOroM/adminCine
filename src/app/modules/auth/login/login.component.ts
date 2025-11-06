@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Router } from '@angular/router';
-import { AuthService } from '../../../core/services/auth.service';
+import { AuthService, User } from '../../../core/services/auth.service';
 
 @Component({
     selector: 'app-login',
@@ -20,7 +20,23 @@ export class LoginComponent {
 
     login() {
         this.auth.login(this.correo, this.password).subscribe({
-            next: () => this.router.navigate(['/admin']),
+            next: (user: User) => {
+                switch (user.rol) {
+                    case 'admin_sistema':
+                        this.router.navigate(['/admin-general']);
+                        break;
+                    case 'admin_cine':
+                        this.router.navigate(['/admin']);
+                        break;
+                    case 'anunciante':
+                        this.router.navigate(['/anunciante']);
+                        break;
+                    case 'cliente':
+                    default:
+                        this.router.navigate(['/cliente']);
+                        break;
+                }
+            },
             error: () => (this.error = 'Credenciales incorrectas')
         });
     }
