@@ -1,0 +1,47 @@
+<div class="container py-4">
+    <h3 class="fw-bold mb-3 text-primary">Mis anuncios</h3>
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <button routerLink="/anunciante/anuncio" class="btn btn-success">Crear nuevo anuncio</button>
+        <div class="text-end">
+            <small class="text-muted">Saldo actual: </small>
+            <span class="fw-bold text-success">Q{{ cartera.getBalance(user?.id || 0) }}</span>
+        </div>
+    </div>
+
+    <div *ngIf="anuncios.length === 0" class="alert alert-info">
+        No tienes anuncios creados aún.
+    </div>
+
+    <div *ngFor="let ad of anuncios" class="card mb-3 shadow-sm border-0 rounded-3">
+        <div class="card-body">
+            <h5 class="card-title mb-2 d-flex justify-content-between">
+                <span>{{ ad.titulo }}</span>
+                <span class="badge" [class.bg-success]="ad.activo" [class.bg-secondary]="!ad.activo">
+                    {{ ad.activo ? 'Activo' : 'Inactivo' }}
+                </span>
+            </h5>
+
+            <p class="card-text">{{ ad.descripcion }}</p>
+
+            <div *ngIf="ad.imagen" class="mb-2">
+                <img [src]="ad.imagen" alt="anuncio" class="img-fluid rounded" style="max-height: 180px;">
+            </div>
+
+            <div *ngIf="ad.videoUrl" class="ratio ratio-16x9 mb-2">
+                <iframe [src]="ad.videoUrl" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+            </div>
+
+            <p class="mb-1"><strong>Tipo:</strong> {{ ad.tipo }}</p>
+            <p class="mb-1"><strong>Días restantes:</strong> {{ getDiasRestantes(ad) }}</p>
+            <p class="mb-3"><strong>Precio pagado:</strong> Q{{ ad.precioPagado }}</p>
+
+            <div class="d-flex gap-2">
+                <button class="btn btn-outline-primary btn-sm" (click)="toggleActivo(ad)">
+                    {{ ad.activo ? 'Pausar' : 'Activar' }}
+                </button>
+                <button class="btn btn-outline-danger btn-sm" (click)="eliminar(ad)">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>

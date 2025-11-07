@@ -67,4 +67,17 @@ export class AuthService {
   get currentUser(): User | null {
     return this.currentUserSubject.value;
   }
+
+  getUsuario(): User | null {
+    let user = this.currentUserSubject.value;
+    if (!user) {
+      const saved = localStorage.getItem('user');
+      if (saved) {
+        user = JSON.parse(saved);
+        this.currentUserSubject.next(user);
+      }
+    }
+    return user;
+  }
+
 }

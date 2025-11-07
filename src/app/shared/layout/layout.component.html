@@ -1,0 +1,29 @@
+<div class="container-fluid p-0 min-vh-100 d-flex flex-column bg-light">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold" routerLink="/">CinePlus</a>
+      <div>
+        <span class="text-white me-3">{{ user?.nombre || 'Invitado' }}</span>
+        <button class="btn btn-outline-light btn-sm" (click)="logout()">Cerrar sesión</button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="flex-grow-1 d-flex">
+    <div *ngIf="user?.rol === 'cliente'" class="d-none d-lg-block p-2">
+      <app-ad-sidebar></app-ad-sidebar>
+    </div>
+
+    <div class="flex-fill p-4">
+      <router-outlet></router-outlet>
+    </div>
+
+    <div *ngIf="user?.rol === 'cliente'" class="d-none d-lg-block p-2">
+      <app-ad-sidebar></app-ad-sidebar>
+    </div>
+  </div>
+
+  <footer class="bg-dark text-white text-center py-2 mt-auto">
+    © 2025 CinePlus - Todos los derechos reservados
+  </footer>
+</div>

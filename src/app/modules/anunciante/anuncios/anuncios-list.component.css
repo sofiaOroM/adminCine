@@ -1,0 +1,13 @@
+.card {
+    border-radius: 1rem;
+}
+
+.card-body {
+    background-color: #fff;
+}
+
+h5.card-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
