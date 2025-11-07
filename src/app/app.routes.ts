@@ -71,7 +71,7 @@ export const routes: Routes = [
                     { path: 'funciones', component: FuncionesListComponent },
                     { path: 'funciones/nueva', component: FuncionFormComponent },
                     { path: 'funciones/editar/:id', component: FuncionFormComponent },
-                    { path: 'admin/bloquear-anuncios', component: BloquearAnunciosComponent },
+                    { path: 'bloquear-anuncios', component: BloquearAnunciosComponent },
                     { path: '', redirectTo: 'salas', pathMatch: 'full' }
                 ]
             },
