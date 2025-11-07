@@ -1,4 +1,89 @@
-<div class="container">
+<div class="container py-4">
+  <h3 class="mb-4 text-primary fw-bold">📊 Reportes Administrativos</h3>
+
+  <div class="row g-4">
+    <!-- Reporte de ganancias -->
+    <div class="col-md-4">
+      <div class="card shadow-sm p-3 text-center">
+        <h5 class="text-success fw-bold">Ganancia total</h5>
+        <h2 class="text-success">Q{{ gananciasTotales | number:'1.2-2' }}</h2>
+      </div>
+    </div>
+
+    <!-- Reporte de anuncios activos/inactivos -->
+    <div class="col-md-4">
+      <div class="card shadow-sm p-3 text-center">
+        <h5 class="fw-bold">Anuncios</h5>
+        <p class="text-primary mb-0">Activos: <b>{{ anunciosActivos }}</b></p>
+        <p class="text-danger">Inactivos: <b>{{ anunciosInactivos }}</b></p>
+      </div>
+    </div>
+
+    <!-- Ganancias por anunciante -->
+    <div class="col-md-4">
+      <div class="card shadow-sm p-3">
+        <h5 class="fw-bold mb-2">Ganancias por anunciante</h5>
+        <table class="table table-sm">
+          <thead>
+            <tr>
+              <th>Anunciante</th>
+              <th class="text-end">Ganancia (Q)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let anunciante of (gananciasPorAnunciante | keyvalue)">
+              <td>{{ anunciante.key }}</td>
+              <td class="text-end">{{ anunciante.value | number:'1.2-2' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="container mt-4">
+  <h2 class="mb-4 text-center text-primary">📊 Panel de Reportes</h2>
+
+  <div class="row g-4"-->>
+    <!-- Ingresos por tipo -->
+    <!--<div class="col-md-6">
+      <div class="card shadow-sm p-3">
+        <h5 class="text-center">Ingresos por tipo de anuncio</h5>
+        <canvas id="chartIngresos" height="200"></canvas>
+      </div>
+    </div>
+
+     Estado de anuncios 
+    <div class="col-md-6">
+      <div class="card shadow-sm p-3">
+        <h5 class="text-center">Anuncios activos vs inactivos</h5>
+        <canvas id="chartEstado" height="200"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mt-4 shadow-sm p-3">
+    <h5 class="text-center">Top 5 anunciantes por inversión</h5>
+    <table class="table table-striped table-hover mt-2">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>ID Usuario</th>
+          <th>Total Invertido (Q)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let anunciante of topAnunciantes; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ anunciante.id }}</td>
+          <td>{{ anunciante.total | number:'1.2-2' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>-->
+<!--<div class="container">
     <h4 class="text-primary mb-4">Reporte General del Sistema</h4>
     <div class="row g-4">
         <div class="col-md-4">
@@ -20,4 +105,4 @@
             </div>
         </div>
     </div>
-</div>
+</div>-->

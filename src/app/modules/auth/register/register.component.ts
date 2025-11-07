@@ -12,7 +12,7 @@ import { AuthService, User } from '../../../core/services/auth.service';
     styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-    
+
     user: User = { id: 0, nombre: '', correo: '', password: '', rol: 'cliente' };
     error = '';
     success = '';
@@ -25,7 +25,13 @@ export class RegisterComponent {
                 this.success = 'Cuenta creada exitosamente';
                 setTimeout(() => this.router.navigate(['/login']), 1500);
             },
-            error: () => (this.error = 'El usuario ya existe o los datos son inválidos.')
+            error: (err) => {
+                if (err.status === 400) {
+                    this.error = 'El usuario ya existe o los datos son inválidos';
+                } else {
+                    this.error = 'Ocurrió un error al registrar';
+                }
+            }
         });
     }
 }

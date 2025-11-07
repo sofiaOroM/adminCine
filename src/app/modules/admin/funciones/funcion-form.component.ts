@@ -26,11 +26,13 @@ export class FuncionFormComponent {
     private salasService: SalasService,
     private route: ActivatedRoute,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
-    this.peliculas = this.peliculasService.getPeliculas();
-    this.salas = this.salasService.getSalas();
+    this.peliculasService.getPeliculas().subscribe({
+      next: (data) => this.peliculas = data,
+      error: (err) => console.error('Error al cargar películas', err)
+    });
 
     const id = this.route.snapshot.params['id'];
     if (id) {
@@ -41,6 +43,7 @@ export class FuncionFormComponent {
       }
     }
   }
+
 
   guardar() {
     if (this.modoEdicion) {

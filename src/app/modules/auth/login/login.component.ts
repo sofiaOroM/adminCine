@@ -37,7 +37,14 @@ export class LoginComponent {
                         break;
                 }
             },
-            error: () => (this.error = 'Credenciales incorrectas')
+            error: (err) => {
+                console.error('Error de login:', err);
+                if (err.status === 401) {
+                    this.error = 'Correo o contraseña incorrectos';
+                } else {
+                    this.error = 'Ocurrió un error al iniciar sesión';
+                }
+            }
         });
     }
 }

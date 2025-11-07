@@ -12,16 +12,16 @@ import { PricingSettings } from '../../../core/models/configuracion.model';
 })
 
 export class ConfiguracionComponent implements OnInit {
-    config!: PricingSettings;
+    settings!: PricingSettings;
 
     constructor(private configService: ConfiguracionService) { }
 
     ngOnInit() {
-        this.config = this.configService.getSettings(); // ✅ ahora se inicializa correctamente
+        this.settings = this.configService.getSettings();
     }
 
     guardar() {
-        this.configService.update(this.config);
+        this.configService.update(this.settings);
         alert('Configuración guardada correctamente');
     }
 }
