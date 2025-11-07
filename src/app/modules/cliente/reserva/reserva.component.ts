@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FuncionesService, Funcion } from '../../../core/services/funciones.service';
 import { PeliculasService } from '../../../core/services/peliculas.service';
 import { SalasService } from '../../../core/services/salas.service';
+import { catchError, map, Observable, of } from 'rxjs';
 
 @Component({
     selector: 'app-reserva',
@@ -31,9 +32,14 @@ export class ReservaComponent {
         this.funcion = this.funcionesService.getFuncionById(id);
     }
 
-    getPeliculaTitulo() {
-        return this.funcion ? this.peliculasService.getPeliculaById(this.funcion.peliculaId)?.titulo : '';
+    getPeliculaTitulo(): Observable<string> {
+        if (!this.funcion) return of(''); // importar 'of' desde 'rxjs'
+        return this.peliculasService.getPeliculaById(this.funcion.peliculaId).pipe(
+            map(pelicula => pelicula.titulo),
+            catchError(() => of('Desconocida'))
+        );
     }
+
 
     getSalaNombre() {
         return this.funcion ? this.salasService.getSalaById(this.funcion.salaId)?.nombre : '';
