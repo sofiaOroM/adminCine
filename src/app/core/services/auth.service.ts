@@ -17,7 +17,9 @@ export class AuthService {
 
   private fakeUsers: User[] = [
     { id: 1, nombre: 'Admin Cine', correo: 'admin@cine.com', password: '123', rol: 'admin_cine' },
-    { id: 2, nombre: 'Cliente', correo: 'cliente@cine.com', password: '123', rol: 'cliente' }
+    { id: 2, nombre: 'Cliente', correo: 'cliente@cine.com', password: '123', rol: 'cliente' },
+    { id: 3, nombre: 'Anunciante', correo: 'anunciante@cine.com', password: '123', rol: 'anunciante' },
+    { id: 4, nombre: 'Admin Sistema', correo: 'adminSistema@cine.com', password: '123', rol: 'admin_sistema' }
   ];
 
   constructor() {

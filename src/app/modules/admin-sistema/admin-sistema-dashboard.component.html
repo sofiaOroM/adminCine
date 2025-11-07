@@ -7,8 +7,8 @@
             <a routerLink="reportes" class="nav-link text-white">Reportes</a>
         </nav>
         <div class="mt-auto text-center border-top pt-3">
-            <p class="mb-1">{{ auth.currentUser?.nombre }}</p>
-            <button class="btn btn-sm btn-outline-light w-100" (click)="auth.logout()">Cerrar sesión</button>
+            <p class="mb-1"> {{ auth.currentUser?.nombre }}</p>
+            <button routerLink="/login" class="btn btn-sm btn-outline-light w-100" (click)="auth.logout()">Cerrar sesión</button>
         </div>
     </div>
 
