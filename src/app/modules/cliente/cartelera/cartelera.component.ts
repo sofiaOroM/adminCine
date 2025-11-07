@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FuncionesService, Funcion } from '../../../core/services/funciones.service';
-import { PeliculasService } from '../../../core/services/peliculas.service';
+import { PeliculasService, Pelicula } from '../../../core/services/peliculas.service';
 import { SalasService } from '../../../core/services/salas.service';
 
 @Component({
@@ -17,6 +17,9 @@ export class CarteleraComponent {
     funcionesFiltradas: Funcion[] = [];
     filtro: string = '';
 
+    // mapa local para guardar las películas cargadas
+    peliculasMap: { [id: number]: Pelicula } = {};
+
     constructor(
         private funcionesService: FuncionesService,
         private peliculasService: PeliculasService,
@@ -25,11 +28,20 @@ export class CarteleraComponent {
 
     ngOnInit() {
         this.funciones = this.funcionesService.getFunciones();
-        this.funcionesFiltradas = [...this.funciones];
+
+        // cargar todas las películas usadas en las funciones
+        this.funciones.forEach(func => {
+            this.peliculasService.getPeliculaById(func.peliculaId).subscribe(p => {
+                this.peliculasMap[func.peliculaId] = p;
+
+                // inicializar funcionesFiltradas cuando ya estén las películas
+                this.funcionesFiltradas = [...this.funciones];
+            });
+        });
     }
 
-    getPelicula(id: number) {
-        return this.peliculasService.getPeliculaById(id);
+    getPelicula(id: number): Pelicula | undefined {
+        return this.peliculasMap[id];
     }
 
     getSala(id: number) {
