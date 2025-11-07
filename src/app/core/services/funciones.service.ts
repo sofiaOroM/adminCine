@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
-import { PeliculasService, Pelicula } from './peliculas.service';
+import { PeliculasService } from './peliculas.service';
+import { Pelicula } from '../models/pelicula.model';
 import { SalasService, Sala } from './salas.service';
+import { map } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
 
 export interface Funcion {
     id: number;
@@ -47,10 +50,11 @@ export class FuncionesService {
         this.funciones = this.funciones.filter(f => f.id !== id);
     }
 
-    // Métodos de ayuda para mostrar nombres
-    getPelicula(id: number): Pelicula | undefined {
+    getPelicula(id: number): Observable<Pelicula | undefined> {
+        if (!id) return of(undefined);
         return this.peliculasService.getPeliculaById(id);
     }
+
 
     getSala(id: number): Sala | undefined {
         return this.salasService.getSalaById(id);

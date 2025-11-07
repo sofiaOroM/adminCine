@@ -16,13 +16,22 @@ export class PeliculasListComponent {
   constructor(private peliculasService: PeliculasService) { }
 
   ngOnInit() {
-    this.peliculas = this.peliculasService.getPeliculas();
+    this.cargarPeliculas();
+  }
+
+  cargarPeliculas() {
+    this.peliculasService.getPeliculas().subscribe({
+      next: (data: Pelicula[]) => this.peliculas = data,
+      error: (err) => console.error('Error al cargar películas:', err)
+    });
   }
 
   eliminarPelicula(id: number) {
     if (confirm('¿Deseas eliminar esta película?')) {
-      this.peliculasService.deletePelicula(id);
-      this.peliculas = this.peliculasService.getPeliculas();
+      this.peliculasService.deletePelicula(id).subscribe({
+        next: () => this.cargarPeliculas(),
+        error: (err) => console.error('Error al eliminar película:', err)
+      });
     }
   }
 }
