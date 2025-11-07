@@ -1,0 +1,10 @@
+<div class="card shadow-sm p-4 bg-light">
+    <h5 class="text-primary mb-3">Mi Cartera Digital</h5>
+    <p><strong>Saldo actual:</strong> Q{{ saldo.toFixed(2) }}</p>
+
+    <div class="input-group mt-3">
+        <span class="input-group-text">Q</span>
+        <input type="number" [(ngModel)]="monto" min="1" class="form-control" placeholder="Monto a recargar">
+        <button class="btn btn-success" (click)="recargar()">Recargar</button>
+    </div>
+</div>
