@@ -53,7 +53,7 @@ export class AuthService {
   }
 
   register(newUser: Omit<User, 'id'>): Observable<User> {
-    return this.http.post<User>(`${this.apiUrl}`, newUser);
+    return this.http.post<User>(`${this.apiUrl}/registrar`, newUser);
   }
 
   updateProfile(updated: Partial<User>): Observable<User> {
