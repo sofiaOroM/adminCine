@@ -52,7 +52,7 @@ export class AnuncioListComponent implements OnInit {
 
     eliminar(ad: any): void {
         if (confirm('¿Seguro que deseas eliminar este anuncio?')) {
-            // lógica de eliminación aquí
+            // lógica para eliminar, falta implementar
         }
     }
 
