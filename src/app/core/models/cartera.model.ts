@@ -1,4 +1,4 @@
 export interface Cartera {
-  ownerId: number;   
-  balance: number;
+  id: number;   
+  saldo: number;
 }

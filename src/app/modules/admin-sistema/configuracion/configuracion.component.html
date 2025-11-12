@@ -1,10 +1,53 @@
 <div class="card shadow-sm p-4 bg-light">
+  <h4 class="text-primary mb-4">Configuración de precios</h4>
+
+  <form (ngSubmit)="guardar()">
+    <h5 class="mt-3">Precio base por tipo de anuncio</h5>
+    <div class="row g-2">
+      <div class="col-md-4" *ngFor="let tipo of adTypes">
+        <label class="form-label text-capitalize">{{ tipo }}:</label>
+        <input
+          type="number"
+          class="form-control"
+          [(ngModel)]="settings.priceByType[tipo]"
+          [name]="tipo"
+        />
+      </div>
+    </div>
+
+    <h5 class="mt-4">Multiplicadores por duración</h5>
+    <div class="row g-2">
+      <div class="col-md-3" *ngFor="let per of adPeriods">
+        <label class="form-label">{{ per }}:</label>
+        <input
+          type="number"
+          class="form-control"
+          [(ngModel)]="settings.multiplierByPeriod[per]"
+          [name]="per"
+        />
+      </div>
+    </div>
+
+    <h5 class="mt-4">Precio por día para ocultar anuncios en cines</h5>
+    <input
+      type="number"
+      class="form-control w-25"
+      [(ngModel)]="settings.hidePricePerDayByCinema"
+      name="hide"
+    />
+
+    <div class="d-flex justify-content-end mt-4">
+      <button class="btn btn-primary">Guardar cambios</button>
+    </div>
+  </form>
+</div>
+<!--<div class="card shadow-sm p-4 bg-light">
     <h4 class="text-primary mb-4">Configuración de precios</h4>
 
     <form (ngSubmit)="guardar()">
         <h5 class="mt-3">Precio base por tipo de anuncio</h5>
         <div class="row g-2">
-            <div class="col-md-4" *ngFor="let tipo of ['texto','texto-imagen','video-texto']">
+            <div class="col-md-4" *ngFor="let tipo of ['texto','texto-imagen','video-texto'] as AdType">
                 <label class="form-label text-capitalize">{{tipo}}:</label>
                 <input type="number" class="form-control" [(ngModel)]="settings.priceByType[tipo]" name="{{tipo}}">
             </div>
@@ -25,4 +68,4 @@
             <button class="btn btn-primary">Guardar cambios</button>
         </div>
     </form>
-</div>
+</div>-->

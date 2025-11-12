@@ -42,4 +42,9 @@ export class SalaFormComponent {
         }
         this.router.navigate(['/admin/salas']);
     }
+
+    cancelar() {
+        this.router.navigate(['/admin/salas']);
+    }
+
 }

@@ -54,7 +54,7 @@ export class AnuncioFormComponent {
         this.calcularPrecio();
         const id = user.id;
 
-        if (!this.cartera.debit(id, this.precioCalculado)) {
+        if (!this.cartera.debitar(id, this.precioCalculado)) {
             alert('Saldo insuficiente. Recarga tu cartera antes de comprar.');
             return;
         }
