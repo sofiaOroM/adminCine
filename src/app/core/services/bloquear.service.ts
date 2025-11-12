@@ -24,7 +24,7 @@ export class BloquearService {
         const total = pricePerDay * dias;
         const carteraDueño = -Math.abs(cineId);
 
-        if (!this.cartera.debit(carteraDueño, total)) return null;
+        if (!this.cartera.debitar(carteraDueño, total)) return null;
 
         const start = new Date();
         const end = new Date(start.getTime() + dias * 24 * 60 * 60 * 1000);

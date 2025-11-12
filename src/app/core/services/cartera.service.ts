@@ -1,48 +1,30 @@
 import { Injectable } from '@angular/core';
-import { Cartera } from '../models/cartera.model';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
-const STORAGE_KEY = 'carteras';
+export interface Cartera {
+    id: number;
+    saldo: number;
+}
 
 @Injectable({ providedIn: 'root' })
 export class CarteraService {
-    private carteras: Cartera[] = [];
+    private apiUrl = 'http://localhost:8080/cineBackend/api/cartera';
 
-    constructor() {
-        const data = localStorage.getItem(STORAGE_KEY);
-        this.carteras = data ? JSON.parse(data) : [];
+    constructor(private http: HttpClient) { }
+
+
+    recargar(id: number, cantidad: number): Observable<void> {
+        return this.http.put<void>(`${this.apiUrl}/${id}/recargar`, { cantidad });
     }
 
-    private save() {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(this.carteras));
+    debitar(id: number, cantidad: number): Observable<void> {
+        return this.http.put<void>(`${this.apiUrl}/${id}/debitar`, { cantidad });
     }
 
-    getCartera(ownerId: number): Cartera {
-        let w = this.carteras.find(x => x.ownerId === ownerId);
-        if (!w) {
-            w = { ownerId, balance: 0 };
-            this.carteras.push(w);
-            this.save();
-        }
-        return w;
+    obtenerCartera(usuarioId: number): Observable<Cartera> {
+        return this.http.get<Cartera>(`${this.apiUrl}/${usuarioId}`);
     }
 
-    credit(ownerId: number, amount: number) {
-        const w = this.getCartera(ownerId);
-        w.balance += amount;
-        this.save();
-    }
 
-    debit(ownerId: number, amount: number): boolean {
-        const w = this.getCartera(ownerId);
-        if (w.balance >= amount) {
-            w.balance -= amount;
-            this.save();
-            return true;
-        }
-        return false;
-    }
-
-    getBalance(ownerId: number): number {
-        return this.getCartera(ownerId).balance;
-    }
 }

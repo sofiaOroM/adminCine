@@ -4,11 +4,12 @@ import { RouterModule } from '@angular/router';
 import { FuncionesService, Funcion } from '../../../core/services/funciones.service';
 import { PeliculasService, Pelicula } from '../../../core/services/peliculas.service';
 import { SalasService } from '../../../core/services/salas.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'app-cartelera',
     standalone: true,
-    imports: [CommonModule, RouterModule],
+    imports: [CommonModule, RouterModule, FormsModule],
     templateUrl: './cartelera.component.html',
     styleUrls: ['./cartelera.component.css']
 })
@@ -17,7 +18,6 @@ export class CarteleraComponent {
     funcionesFiltradas: Funcion[] = [];
     filtro: string = '';
 
-    // mapa local para guardar las películas cargadas
     peliculasMap: { [id: number]: Pelicula } = {};
 
     constructor(
@@ -29,16 +29,16 @@ export class CarteleraComponent {
     ngOnInit() {
         this.funciones = this.funcionesService.getFunciones();
 
-        // cargar todas las películas usadas en las funciones
         this.funciones.forEach(func => {
-            this.peliculasService.getPeliculaById(func.peliculaId).subscribe(p => {
-                this.peliculasMap[func.peliculaId] = p;
-
-                // inicializar funcionesFiltradas cuando ya estén las películas
-                this.funcionesFiltradas = [...this.funciones];
-            });
+            const pelicula = this.peliculasService.getPeliculaById(func.peliculaId);
+            if (pelicula) {
+                this.peliculasMap[func.peliculaId] = pelicula;
+            }
         });
+
+        this.funcionesFiltradas = [...this.funciones];
     }
+
 
     getPelicula(id: number): Pelicula | undefined {
         return this.peliculasMap[id];

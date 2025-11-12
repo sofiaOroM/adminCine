@@ -21,7 +21,7 @@ export class ReservaComponent {
 
     constructor(
         private route: ActivatedRoute,
-        private router: Router,
+        public router: Router,
         private funcionesService: FuncionesService,
         private peliculasService: PeliculasService,
         private salasService: SalasService
@@ -32,12 +32,9 @@ export class ReservaComponent {
         this.funcion = this.funcionesService.getFuncionById(id);
     }
 
-    getPeliculaTitulo(): Observable<string> {
-        if (!this.funcion) return of(''); // importar 'of' desde 'rxjs'
-        return this.peliculasService.getPeliculaById(this.funcion.peliculaId).pipe(
-            map(pelicula => pelicula.titulo),
-            catchError(() => of('Desconocida'))
-        );
+    getPeliculaTitulo(): String {
+        const pelicula = this.funcion ? this.peliculasService.getPeliculaById(this.funcion.peliculaId) : null;
+        return pelicula ? pelicula.titulo : '';
     }
 
 

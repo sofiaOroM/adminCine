@@ -5,7 +5,7 @@
         <button routerLink="/anunciante/anuncio" class="btn btn-success">Crear nuevo anuncio</button>
         <div class="text-end">
             <small class="text-muted">Saldo actual: </small>
-            <span class="fw-bold text-success">Q{{ cartera.getBalance(user?.id || 0) }}</span>
+            <span class="fw-bold text-success">Q{{ saldo.toFixed(2) }}</span>
         </div>
     </div>
 

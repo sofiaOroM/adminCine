@@ -3,7 +3,7 @@
         <div class="card-body">
             <h4 class="text-primary text-center mb-3">Reserva de Boletos</h4>
 
-            <p><strong>Película:</strong>{{ getPeliculaTitulo() | async }} <span></span></p>
+            <p><strong>Película:</strong> {{ getPeliculaTitulo() }}</p>
             <p><strong>Sala:</strong> {{ getSalaNombre() }}</p>
             <p><strong>Fecha:</strong> {{ funcion?.fecha }} - {{ funcion?.hora }}</p>
             <p><strong>Precio:</strong> Q{{ funcion?.precio }}</p>
@@ -21,7 +21,8 @@
 
                 <div class="d-flex justify-content-end">
                     <button type="submit" class="btn btn-success me-2">Confirmar</button>
-                    <button type="button" class="btn btn-secondary" (click)="router.navigate(['/cliente/cartelera'])">Cancelar</button>
+                    <button type="button" class="btn btn-secondary"
+                        (click)="router.navigate(['/cliente/cartelera'])">Cancelar</button>
                 </div>
             </form>
         </div>

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { Cartera } from '../models/cartera.model';
 
 export interface User {
   id: number;
@@ -8,6 +9,7 @@ export interface User {
   correo: string;
   password: string;
   rol: string;
+  cartera?: Cartera;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -27,6 +29,7 @@ export class AuthService {
         if (user) {
           localStorage.setItem('user', JSON.stringify(user));
           this.currentUserSubject.next(user);
+          console.log('Saldo cartera al iniciar sesión:', user.cartera?.saldo);
         }
       })
     );
@@ -44,7 +47,7 @@ export class AuthService {
   get currentUser(): User | null {
     return this.currentUserSubject.value;
   }
-  
+
   getUsuario(): User | null {
     return this.currentUserSubject.value;
   }
@@ -146,5 +149,4 @@ export class AuthService {
     }
     return user;
   }
-
 }*/

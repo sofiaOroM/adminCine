@@ -5,4 +5,5 @@ export interface Pelicula {
   duracion: number;
   clasificacion: string;
   sinopsis: string;
+  imagen?: string;
 }
