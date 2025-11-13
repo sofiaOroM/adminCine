@@ -1,40 +1,67 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 export interface Sala {
-    id: number;
-    nombre: string;
-    capacidad: number;
-    descripcion?: string;
+  id: number;
+  nombre: string;
+  capacidad: number;
+  descripcion?: string;
 }
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class SalasService {
-    private salas: Sala[] = [
-        { id: 1, nombre: 'Sala Principal', capacidad: 120, descripcion: 'Pantalla gigante con sonido Dolby' },
-        { id: 2, nombre: 'Sala 3D', capacidad: 90, descripcion: 'Sala con proyección 3D' },
-    ];
+  private apiUrl = 'http://localhost:8080/cineBackend/api/salas';
 
-    getSalas(): Sala[] {
-        return this.salas;
-    }
+  constructor(private http: HttpClient) {}
 
-    getSalaById(id: number): Sala | undefined {
-        return this.salas.find(s => s.id === id);
-    }
+  getSalas(): Observable<Sala[]> {
+    return this.http.get<Sala[]>(this.apiUrl);
+  }
 
-    addSala(sala: Sala) {
-        sala.id = this.salas.length > 0 ? Math.max(...this.salas.map(s => s.id)) + 1 : 1;
-        this.salas.push(sala);
-    }
+  getSalaById(id: number): Observable<Sala> {
+    return this.http.get<Sala>(`${this.apiUrl}/${id}`);
+  }
 
-    updateSala(sala: Sala) {
-        const index = this.salas.findIndex(s => s.id === sala.id);
-        if (index >= 0) this.salas[index] = sala;
-    }
+  addSala(sala: Sala): Observable<void> {
+    return this.http.post<void>(this.apiUrl, sala);
+  }
 
-    deleteSala(id: number) {
-        this.salas = this.salas.filter(s => s.id !== id);
-    }
+  updateSala(sala: Sala): Observable<void> {
+    return this.http.put<void>(`${this.apiUrl}/${sala.id}`, sala);
+  }
+
+  deleteSala(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
 }
+
+/*import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+export interface Sala {
+  id: number;
+  nombre: string;
+  capacidad: number;
+  descripcion?: string;
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class SalasService {
+  private apiUrl = 'http://localhost:8080/cineBackend/api/salas';
+
+  constructor(private http: HttpClient) {}
+
+  getSalas(): Observable<Sala[]> {
+    return this.http.get<Sala[]>(this.apiUrl);
+  }
+
+  getSalaById(id: number): Observable<Sala> {
+    return this.http.get<Sala>(`${this.apiUrl}/${id}`);
+  }
+}*/

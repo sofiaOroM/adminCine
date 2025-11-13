@@ -19,6 +19,41 @@
     <tbody>
       <tr *ngFor="let f of funciones">
         <td>{{ f.id }}</td>
+        <td>{{ f.pelicula.titulo || 'Desconocida' }}</td>
+        <td>{{ f.sala.nombre || 'Desconocida' }}</td>
+        <td>{{ getFecha(f.fechaHora) }}</td>
+        <td>{{ getHora(f.fechaHora) }}</td>
+        <td>{{ f.precio }}</td>
+        <td class="text-center">
+          <a [routerLink]="['/admin/funciones/editar', f.id]" class="btn btn-outline-primary btn-sm me-2">Editar</a>
+          <button class="btn btn-outline-danger btn-sm" (click)="eliminarFuncion(f.id)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!--<div class="card shadow-sm p-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h4 class="text-primary m-0">Funciones programadas</h4>
+    <a routerLink="/admin/funciones/nueva" class="btn btn-success btn-sm">Nueva función</a>
+  </div>
+
+  <table class="table table-hover align-middle">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Película</th>
+        <th>Sala</th>
+        <th>Fecha</th>
+        <th>Hora</th>
+        <th>Precio (Q)</th>
+        <th class="text-center">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let f of funciones">
+        <td>{{ f.id }}</td>
         <td>{{ getNombrePelicula(f.peliculaId) }}</td>
         <td>{{ getNombreSala(f.salaId) }}</td>
         <td>{{ f.fecha }}</td>
@@ -31,4 +66,4 @@
       </tr>
     </tbody>
   </table>
-</div>
+</div>-->

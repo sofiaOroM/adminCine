@@ -16,13 +16,28 @@ export class SalasListComponent {
     constructor(private salasService: SalasService) { }
 
     ngOnInit() {
-        this.salas = this.salasService.getSalas();
+        this.salasService.getSalas().subscribe({
+            next: (data) => this.salas = data,
+            error: (err) => console.error('Error al cargar salas:', err)
+        });
+    }
+
+    cargarSalas() {
+        this.salasService.getSalas().subscribe({
+            next: (data) => this.salas = data,
+            error: (err) => console.error('Error al cargar salas:', err)
+        });
     }
 
     eliminarSala(id: number) {
         if (confirm('¿Seguro que deseas eliminar esta sala?')) {
-            this.salasService.deleteSala(id);
-            this.salas = this.salasService.getSalas();
+            this.salasService.deleteSala(id).subscribe({
+                next: () => {
+                    alert('Sala eliminada correctamente');
+                    this.cargarSalas(); 
+                },
+                error: (err) => console.error('Error al eliminar sala:', err)
+            });
         }
     }
 }
