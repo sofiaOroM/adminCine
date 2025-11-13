@@ -1,6 +1,66 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { PeliculasService, Pelicula } from '../../../core/services/peliculas.service';
+
+@Component({
+    selector: 'app-pelicula-form',
+    standalone: true,
+    imports: [CommonModule, FormsModule, RouterModule],
+    templateUrl: './pelicula-form.component.html',
+    styleUrls: ['./pelicula-form.component.css']
+})
+
+export class PeliculaFormComponent {
+    pelicula: Pelicula = { id: 0, titulo: '', genero: '', duracion: 0, clasificacion: '', sinopsis: '' };
+    modoEdicion = false;
+
+    constructor(
+        private peliculasService: PeliculasService,
+        private route: ActivatedRoute,
+        private router: Router
+    ) { }
+
+    ngOnInit() {
+        console.log('PeliculaFormComponent initialized');
+        const id = this.route.snapshot.params['id'];
+        if (id) {
+            this.peliculasService.getPeliculaById(+id).subscribe({
+                next: (encontrada) => {
+                    this.pelicula = encontrada;
+                    this.modoEdicion = true;
+                },
+                error: (err) => console.error('Error al obtener película:', err)
+            });
+        }
+
+    }
+    
+    guardar() {
+        if (this.modoEdicion) {
+            this.peliculasService.updatePelicula(this.pelicula).subscribe({
+                next: () => {
+                    alert('Película actualizada correctamente');
+                    this.router.navigate(['/admin/peliculas']);
+                },
+                error: (err) => console.error('Error al actualizar:', err)
+            });
+        } else {
+            this.peliculasService.addPelicula(this.pelicula).subscribe({
+                next: () => {
+                    alert('Película registrada correctamente');
+                    this.router.navigate(['/admin/peliculas']);
+                },
+                error: (err) => console.error('Error al crear:', err)
+            });
+        }
+    }
+}
+
+/*import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PeliculasService, Pelicula } from '../../../core/services/peliculas.service';
 
@@ -42,7 +102,7 @@ export class PeliculaFormComponent {
     }
     this.router.navigate(['/admin/peliculas']);
   }
-}
+}*/
 
 /*import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';

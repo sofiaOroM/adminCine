@@ -13,11 +13,16 @@ import { PeliculasService, Pelicula } from '../../../core/services/peliculas.ser
 export class DetallePeliculaComponent {
   pelicula: Pelicula | undefined;
 
-  constructor(private route: ActivatedRoute, private peliculasService: PeliculasService) {}
+  constructor(private route: ActivatedRoute, private peliculasService: PeliculasService) { }
 
   ngOnInit() {
     const id = +this.route.snapshot.params['id'];
-    this.pelicula = this.peliculasService.getPeliculaById(id);
+    this.peliculasService.getPeliculaById(id).subscribe({
+      next: (pelicula) => {
+        this.pelicula = pelicula;
+      },
+      error: (err) => console.error('Error al obtener película:', err)
+    });
   }
 }
 

@@ -1,4 +1,30 @@
-<div class="container py-5">
+<div class="container py-4" *ngIf="funcion">
+  <div class="card shadow-lg p-4">
+    <h4 class="text-primary mb-3">Reserva para {{ funcion.pelicula.titulo }}</h4>
+
+    <p><strong>Sala:</strong> {{ funcion.sala.nombre }}</p>
+    <p><strong>Fecha y hora:</strong> {{ funcion.fechaHora | date: 'medium' }}</p>
+    <p><strong>Precio por boleto:</strong> Q{{ funcion.precio }}</p>
+
+    <form (ngSubmit)="reservar()">
+      <div class="mb-3">
+        <label class="form-label">Tu nombre:</label>
+        <input type="text" [(ngModel)]="nombre" name="nombre" class="form-control" required />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Cantidad de boletos:</label>
+        <input type="number" [(ngModel)]="cantidad" name="cantidad" class="form-control" min="1" required />
+      </div>
+
+      <div class="d-flex justify-content-end">
+        <button type="submit" class="btn btn-success">Confirmar reserva</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!--<div class="container py-5">
     <div class="card shadow-sm mx-auto" style="max-width: 600px;">
         <div class="card-body">
             <h4 class="text-primary text-center mb-3">Reserva de Boletos</h4>
@@ -27,4 +53,4 @@
             </form>
         </div>
     </div>
-</div>
+</div>-->
