@@ -8,5 +8,7 @@
             <p><strong>Clasificación:</strong> {{ pelicula.clasificacion }}</p>
             <p><strong>Sinopsis:</strong> {{ pelicula.sinopsis }}</p>
         </div>
+        <hr>
+        <app-comentarios-pelicula [peliculaId]="pelicula.id"></app-comentarios-pelicula>
     </div>
 </div>

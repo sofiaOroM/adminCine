@@ -8,7 +8,7 @@ import { PeliculasService, Pelicula } from '../../../core/services/peliculas.ser
     selector: 'app-pelicula-form',
     standalone: true,
     imports: [CommonModule, FormsModule, RouterModule],
-    templateUrl: './pelicula-form.component.html',
+    templateUrl: './peliculas-form.component.html',
     styleUrls: ['./pelicula-form.component.css']
 })
 
