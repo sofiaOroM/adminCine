@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { PeliculasService, Pelicula } from '../../../core/services/peliculas.service';
+import { ComentariosPeliculaComponent } from '../../admin/peliculas/comentarios-pelicula/comentarios-pelicula.component';
 
 @Component({
   selector: 'app-detalle-pelicula',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ComentariosPeliculaComponent],
   templateUrl: './detalle-pelicula.component.html',
   styleUrls: ['./detalle-pelicula.component.css']
 })
