@@ -1,0 +1,19 @@
+<h5 class="fw-bold mb-3 text-center text-primary">Publicidad</h5>
+
+<div class="ad-card" *ngFor="let a of anuncios">
+
+  <video *ngIf="a.video" class="ad-video" controls [src]="a.video">
+  </video>
+
+  <img *ngIf="!a.video && a.imagen" [src]="a.imagen" class="ad-img">
+
+  <div class="ad-body">
+    <h6 class="ad-title">{{ a.titulo }}</h6>
+    <p class="ad-desc">{{ a.descripcion }}</p>
+  </div>
+
+</div>
+
+<div *ngIf="anuncios.length === 0" class="text-center text-muted mt-5">
+  <i>No hay anuncios disponibles</i>
+</div>

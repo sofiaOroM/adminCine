@@ -4,7 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FuncionesService, Funcion } from '../../../core/services/funciones.service';
 import { PeliculasService, Pelicula } from '../../../core/services/peliculas.service';
-import { SalasService, Sala } from '../../../core/services/salas.service';
+import { SalasService } from '../../../core/services/salas.service';
+import { Sala } from '../../../core/models/sala.model';
 
 @Component({
   selector: 'app-funcion-form',

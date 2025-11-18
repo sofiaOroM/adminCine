@@ -27,10 +27,14 @@ import { AnuncioListComponent } from './modules/anunciante/anuncios/anuncios-lis
 import { AnuncioFormComponent } from './modules/anunciante/anuncios/anuncios-form.component';
 import { CarteraComponent } from './shared/cartera/cartera.component';
 
+import { ClienteDashboardComponent } from './modules/cliente/cliente-dashboard.component';
 import { CarteleraComponent } from './modules/cliente/cartelera/cartelera.component';
 import { DetallePeliculaComponent } from './modules/cliente/detalle-pelicula/detalle-pelicula.component';
+import { ComentariosSalaComponent } from './modules/cliente/cines/salas/comentario-sala/comentarios-sala.component';
 import { ReservaComponent } from './modules/cliente/reserva/reserva.component';
-import { AdSidebarComponent } from './modules/cliente/ad-sidebar/ad-sidebar.component';
+import { ClienteCinesListComponent } from './modules/cliente/cines/cines-list.component';
+import { ClienteCarteraComponent } from './modules/cliente/cartera/cliente-cartera.component';
+import { AnunciosPanelComponent } from './modules/cliente/anuncios-panel/anuncios-panel.component';
 
 
 import { LayoutComponent } from './shared/layout/layout.component';
@@ -92,10 +96,14 @@ export const routes: Routes = [
             },
             {
                 path: 'cliente',
+                component: ClienteDashboardComponent,
                 children: [
-                    { path: 'cliente', component: AdSidebarComponent },
+                    { path: 'anuncios', component: AnunciosPanelComponent },
                     { path: 'cartelera', component: CarteleraComponent },
-                    { path: 'pelicula/:id', component: DetallePeliculaComponent },
+                    { path: 'cartelera/:id', component: DetallePeliculaComponent },
+                    {path: 'cartera', component: ClienteCarteraComponent },
+                    { path: 'cines', component: ClienteCinesListComponent },
+                    { path: 'sala/:id', component: ComentariosSalaComponent },
                     { path: 'reserva/:id', component: ReservaComponent },
                     { path: '', redirectTo: 'cartelera', pathMatch: 'full' }
                 ]

@@ -9,8 +9,8 @@
         </div>
 
         <div *ngFor="let c of comentarios" class="border-bottom mb-2 pb-2">
-            <strong>{{ c.usuario?.nombre || 'Usuario' }}</strong>
-            <span class="text-warning ms-2">★ {{ c.calificacion }}/5</span>
+            <strong>{{ getNombreUsuario || 'Usuario' }}</strong>
+            <span class="text-warning ms-2"> {{ c.calificacion }}/5</span>
             <p class="m-0">{{ c.comentario }}</p>
             <small class="text-muted">{{ c.fechaComentario | date:'short' }}</small>
         </div>

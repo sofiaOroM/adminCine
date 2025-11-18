@@ -8,7 +8,7 @@
   },
   "include": [
     "src/**/*.ts"
-, "src/app/modules/admin/admin-sidebar", "src/app/modules/cliente/ad-sidebar"  ],
+, "src/app/modules/admin/admin-sidebar", "src/app/modules/cliente/cliente-sidebar", "src/app/modules/cliente/cines/detalle-sala.component"  ],
   "exclude": [
     "src/**/*.spec.ts"
   ]

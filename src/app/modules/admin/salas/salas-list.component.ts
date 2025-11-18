@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { SalasService, Sala } from '../../../core/services/salas.service';
+import { SalasService } from '../../../core/services/salas.service';
+import { Sala } from '../../../core/models/sala.model';
 
 @Component({
     selector: 'app-salas-list',

@@ -1,13 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
-export interface Sala {
-  id: number;
-  nombre: string;
-  capacidad: number;
-  descripcion?: string;
-}
+import { Sala } from '../models/sala.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +9,7 @@ export interface Sala {
 export class SalasService {
   private apiUrl = 'http://localhost:8080/cineBackend/api/salas';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getSalas(): Observable<Sala[]> {
     return this.http.get<Sala[]>(this.apiUrl);
