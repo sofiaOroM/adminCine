@@ -34,13 +34,13 @@
 
             <p class="mb-1"><strong>Tipo:</strong> {{ ad.tipo }}</p>
             <p class="mb-1"><strong>Días restantes:</strong> {{ getDiasRestantes(ad) }}</p>
-            <p class="mb-3"><strong>Precio pagado:</strong> Q{{ ad.precioPagado }}</p>
+            <p class="mb-3"><strong>Precio pagado:</strong> Q {{ ad.costo }}</p>
 
             <div class="d-flex gap-2">
                 <button class="btn btn-outline-primary btn-sm" (click)="toggleActivo(ad)">
                     {{ ad.activo ? 'Pausar' : 'Activar' }}
                 </button>
-                <button class="btn btn-outline-danger btn-sm" (click)="eliminar(ad)">Eliminar</button>
+                <button class="btn btn-outline-danger btn-sm" (click)="eliminar(ad.id)">Eliminar</button>
             </div>
         </div>
     </div>

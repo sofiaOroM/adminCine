@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+/*import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -12,5 +12,39 @@ export class UsuariosListComponent {
     { id: 1, nombre: 'Sofía Orozco', rol: 'admin_cine' },
     { id: 2, nombre: 'Luis Pérez', rol: 'admin_sistema' },
     { id: 3, nombre: 'Carlos Gómez', rol: 'cliente' }
-  ];
+  ];*/
+
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { UsuariosService } from '../../../core/services/usuarios.service';
+
+interface Usuario {
+    id: number;
+    nombre: string;
+    rol: string;
+}
+
+@Component({
+    selector: 'app-usuarios-list',
+    standalone: true,
+    imports: [CommonModule, RouterModule],
+    templateUrl: './usuarios-list.component.html'
+})
+export class UsuariosListComponent {
+    usuarios: Usuario[] = [];
+    constructor(private usuariosService: UsuariosService) { }
+
+    ngOnInit() {
+        this.usuariosService.listar().subscribe(data => {
+            this.usuarios = data;
+        });
+    }  
+    eliminar(id: number) {
+        if (confirm('¿Eliminar usuario?')) {
+          this.usuariosService.eliminar(id).subscribe(() => {
+            this.usuarios = this.usuarios.filter(u => u.id !== id);
+          });
+        }
+      }
 }

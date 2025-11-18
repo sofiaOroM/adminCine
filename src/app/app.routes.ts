@@ -9,6 +9,7 @@ import { AdminSistemaDashboardComponent } from './modules/admin-sistema/admin-si
 import { CinesListComponent } from './modules/admin-sistema/cines/cines-list.component';
 import { CineFormComponent } from './modules/admin-sistema/cines/cine-form.component';
 import { UsuariosListComponent } from './modules/admin-sistema/usuarios/usuarios-list.component';
+import { UsuariosFormComponent } from './modules/admin-sistema/usuarios/usuarios-form.component';
 import { ReportesComponent } from './modules/admin-sistema/reportes/reportes.component';
 import { ConfiguracionComponent } from './modules/admin-sistema/configuracion/configuracion.component';
 
@@ -52,6 +53,8 @@ export const routes: Routes = [
                     { path: 'cines/nuevo', component: CineFormComponent },
                     { path: 'cines/editar/:id', component: CineFormComponent },
                     { path: 'usuarios', component: UsuariosListComponent },
+                    { path: 'usuarios/nuevo', component: UsuariosFormComponent },
+                    { path: 'usuarios/editar/:id', component: UsuariosFormComponent },
                     { path: 'configuracion', component: ConfiguracionComponent },
                     { path: 'reportes', component: ReportesComponent },
                     { path: '', redirectTo: 'cines', pathMatch: 'full' }
@@ -91,7 +94,6 @@ export const routes: Routes = [
                 path: 'cliente',
                 children: [
                     { path: 'cliente', component: AdSidebarComponent },
-
                     { path: 'cartelera', component: CarteleraComponent },
                     { path: 'pelicula/:id', component: DetallePeliculaComponent },
                     { path: 'reserva/:id', component: ReservaComponent },

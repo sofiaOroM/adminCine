@@ -1,0 +1,51 @@
+<div class="card shadow-sm p-4">
+    <h4 class="text-primary mb-3">{{ modoEdicion ? 'Editar usuario' : 'Nuevo usuario' }}</h4>
+
+    <form (ngSubmit)="guardar()">
+
+        <div class="mb-3">
+            <label class="form-label">Nombre:</label>
+            <input type="text" class="form-control"
+                   [(ngModel)]="usuario.nombre"
+                   name="nombre"
+                   required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Correo:</label>
+            <input type="email" class="form-control"
+                   [(ngModel)]="usuario.correo"
+                   name="correo"
+                   required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Rol:</label>
+            <select class="form-select"
+                    [(ngModel)]="usuario.rol"
+                    name="rol"
+                    required>
+                <option value="admin-sistema">Administrador de Sistema</option>
+                <option value="admin-cine">Administrador de Cine</option>
+                <option value="anunciante">Anunciante</option>
+                <option value="cliente">Cliente</option>
+            </select>
+        </div>
+
+        <div *ngIf="usuario.rol === 'admin-cine'" class="mb-3">
+            <label class="form-label">Cine asignado</label>
+            <select class="form-select"
+                    [(ngModel)]="usuario.cine.id"
+                    name="cine"
+                    required>
+                <option *ngFor="let c of cines" [value]="c.id">{{ c.nombre }}</option>
+            </select>
+        </div>
+
+        <div class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-success me-2">Guardar</button>
+            <button type="button" class="btn btn-secondary" routerLink="/admin-sistema/usuarios">Cancelar</button>
+        </div>
+
+    </form>
+</div>
