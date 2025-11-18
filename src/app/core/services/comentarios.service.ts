@@ -1,27 +1,29 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Sala } from '../models/sala.model';
 
 export interface ComentarioPelicula {
-  id?: number;
-  pelicula: any;
-  usuario: any;
-  comentario: string;
-  calificacion: number;
-  fechaComentario?: string;
+    id?: number;
+    pelicula: any;
+    usuario: any;
+    comentario: string;
+    calificacion: number;
+    fechaComentario?: string;
 }
 
 export interface ComentarioSala {
-  id?: number;
-  sala: any;
-  usuario: any;
-  comentario: string;
-  calificacion: number;
-  fechaComentario?: string;
+    id?: number;
+    sala: { id: number } | Sala | null;   
+    usuario: { id: number ; nombre?: string } | null; 
+    comentario: string;
+    calificacion: number;
+    fechaComentario?: string;
 }
 
+
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class ComentariosService {
 

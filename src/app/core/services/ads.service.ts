@@ -48,6 +48,10 @@ export class AdsService {
             this.save();
         }
     }
+    
+    getAnunciosActivos(): Observable<any[]> {
+        return this.http.get<any[]>(`${this.apiUrl}/listar`);
+    }
 
     deactivate(id: number) {
         const ad = this.getById(id);

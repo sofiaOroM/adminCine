@@ -1,11 +1,13 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { Sala } from "../models/sala.model";
 
 @Injectable({ providedIn: 'root' })
 export class CinesService {
   private api = 'http://localhost:8080/cineBackend/api/cines';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   listar() {
     return this.http.get<any[]>(this.api);
@@ -26,4 +28,10 @@ export class CinesService {
   eliminar(id: number) {
     return this.http.delete(`${this.api}/${id}`);
   }
+
+  listarSalas(id: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.api}/${id}/salas`);
+  }
+  
+
 }

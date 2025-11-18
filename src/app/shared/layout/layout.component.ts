@@ -2,12 +2,13 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
-import { AdSidebarComponent } from '../../modules/cliente/ad-sidebar/ad-sidebar.component';
+import { ClienteSidebarComponent } from '../../modules/cliente/cliente-sidebar/cliente-sidebar.component';
 
 @Component({
     selector: 'app-layout',
     standalone: true,
-    imports: [CommonModule, RouterModule, AdSidebarComponent],
+    imports: [CommonModule,
+         RouterModule],
     templateUrl: './layout.component.html',
     styleUrls: ['./layout.component.css']
 })

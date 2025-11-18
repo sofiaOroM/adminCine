@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SalasService, Sala } from '../../../core/services/salas.service';
+import { SalasService } from '../../../core/services/salas.service';
+import { Sala } from '../../../core/models/sala.model';
 
 @Component({
   selector: 'app-sala-form',

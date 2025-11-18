@@ -1,0 +1,50 @@
+<div class="card mt-3">
+
+    <div class="card-body">
+        <h6>Agregar comentario</h6>
+
+        <form (ngSubmit)="agregarComentario()" class="mt-3">
+            <textarea 
+                class="form-control mb-2"
+                [(ngModel)]="nuevoComentario.comentario" 
+                name="comentario"
+                placeholder="Escribe tu comentario...">
+            </textarea>
+
+            <input type="number" 
+                class="form-control mb-2"
+                [(ngModel)]="nuevoComentario.calificacion"
+                name="calificacion" 
+                min="1" max="5"
+                placeholder="Calificación (1-5)" />
+
+            <button class="btn btn-success btn-sm" type="submit">
+                Enviar
+            </button>
+        </form>
+    </div>
+
+    <div class="card-header bg-primary text-white">
+        Opiniones de otros usuarios
+    </div>
+
+    <div class="card-body">
+
+        <p>
+            <strong>Calificación promedio:</strong> 
+            {{ promedio | number:'1.1-1' }}
+        </p>
+
+        <ul class="list-group mb-3">
+            <li *ngFor="let c of comentarios" class="list-group-item">
+                <strong>{{ getNombreUsuario(c) }}:</strong>
+                {{ c.comentario }}
+
+                <span class="float-end text-warning">
+                    {{ c.calificacion }}
+                </span>
+            </li>
+        </ul>
+
+    </div>
+</div>

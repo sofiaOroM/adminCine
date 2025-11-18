@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Pelicula } from './peliculas.service';
-import { Sala } from './salas.service';
+import { Sala } from '../models/sala.model';
 
 export interface Funcion {
   id: number;

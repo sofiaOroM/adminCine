@@ -16,7 +16,7 @@ export class ComentariosSalaComponent {
   promedio: number = 0;
   nuevoComentario: ComentarioSala = { sala: null, usuario: null, comentario: '', calificacion: 0 };
 
-  constructor(private comentariosService: ComentariosService) {}
+  constructor(private comentariosService: ComentariosService) { }
 
   ngOnInit() {
     this.cargarComentarios();
@@ -38,5 +38,9 @@ export class ComentariosSalaComponent {
       this.nuevoComentario.calificacion = 0;
       this.cargarComentarios();
     });
+  }
+
+  getNombreUsuario(c: ComentarioSala): string {
+    return (c.usuario as { id: number; nombre?: string })?.nombre || 'Usuario';
   }
 }

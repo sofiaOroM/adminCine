@@ -1,18 +1,21 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdsService } from '../../../core/services/ads.service';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
-    selector: 'app-ad-sidebar',
+    selector: 'app-cliente-sidebar',
     standalone: true,
     imports: [CommonModule],
-    templateUrl: './ad-sidebar.component.html',
-    styleUrls: ['./ad-sidebar.component.css']
+    templateUrl: './cliente-sidebar.component.html',
+    styleUrls: ['./cliente-sidebar.component.css']
 })
-export class AdSidebarComponent {
+export class ClienteSidebarComponent {
     anuncios: any[] = [];
 
-    constructor(private ads: AdsService) { }
+    constructor(private ads: AdsService,
+        public auth: AuthService
+    ) { }
 
     ngOnInit() {
         this.actualizarAnuncios();
