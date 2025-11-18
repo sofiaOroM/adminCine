@@ -1,11 +1,15 @@
 <div class="card shadow-sm p-4">
-    <h4 class="text-primary mb-3">Usuarios registrados</h4>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="text-primary mb-3">Usuarios registrados</h4>
+        <a routerLink="/admin-sistema/usuarios/nuevo" class="btn btn-success btn-sm">Nuevo Usuario</a>
+    </div>
     <table class="table table-hover">
         <thead class="table-dark">
             <tr>
                 <th>ID</th>
                 <th>Nombre</th>
                 <th>Rol</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -13,6 +17,11 @@
                 <td>{{ u.id }}</td>
                 <td>{{ u.nombre }}</td>
                 <td>{{ u.rol }}</td>
+                <td>
+                    <a routerLink="/admin-sistema/usuarios/editar/{{u.id}}"
+                        class="btn btn-outline-primary btn-sm me-2">editar</a>
+                    <button class="btn btn-outline-danger btn-sm" (click)="eliminar(u.id)">Eliminar</button>
+                </td>
             </tr>
         </tbody>
     </table>

@@ -10,7 +10,6 @@
                 <th>ID</th>
                 <th>Nombre</th>
                 <th>Dirección</th>
-                <th>Administrador</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -19,7 +18,6 @@
                 <td> {{ c.id }} </td>
                 <td> {{ c.nombre }} </td>
                 <td> {{ c.direccion }}</td>
-                <td> {{ c.administrador }}</td>
                 <td>
                     <a routerLink="/admin-sistema/cines/editar/{{c.id}}" class="btn btn-outline-primary btn-sm me-2">editar</a>
                     <button class="btn btn-outline-danger btn-sm"(click)="eliminar(c.id)">Eliminar</button>

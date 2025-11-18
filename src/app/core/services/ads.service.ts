@@ -10,7 +10,7 @@ export class AdsService {
     private anuncios: Anuncio[] = [];
     private apiUrl = 'http://localhost:8080/cineBackend/api/anuncios';
 
-constructor(private http: HttpClient) {
+    constructor(private http: HttpClient) {
         this.load();
         setInterval(() => this.cleanExpired(), 60000);
     }
@@ -37,9 +37,8 @@ constructor(private http: HttpClient) {
         return this.anuncios.find(a => a.id === id);
     }
 
-    create(ad: Anuncio) {
-        this.anuncios.push(ad);
-        this.save();
+    create(anuncio: Anuncio): Observable<any> {
+        return this.http.post(`${this.apiUrl}/crear`, anuncio);
     }
 
     update(ad: Anuncio) {
@@ -56,6 +55,10 @@ constructor(private http: HttpClient) {
             ad.activo = false;
             this.save();
         }
+    }
+
+    deleteAnuncio(id: number): Observable<void> {
+        return this.http.delete<void>(`${this.apiUrl}/${id}`);
     }
 
     cleanExpired() {

@@ -50,10 +50,14 @@ export class AnuncioListComponent implements OnInit {
         ad.activo = !ad.activo;
     }
 
-    eliminar(ad: any): void {
+    eliminar(id: number): void {
         if (confirm('¿Seguro que deseas eliminar este anuncio?')) {
-            // lógica para eliminar, falta implementar
-        }
+      this.anuncioService.deleteAnuncio(id).subscribe({
+        next: () => {
+          this.anuncios = this.anuncios.filter(a => a.id !== id);
+        },
+        error: (err) => console.error('Error al eliminar:', err)
+      });        }
     }
 
     getDiasRestantes(ad: any): number {

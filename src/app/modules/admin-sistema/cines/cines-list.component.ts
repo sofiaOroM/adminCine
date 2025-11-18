@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { CinesService } from '../../../core/services/cines.service';
 
 interface Cine {
     id: number;
@@ -16,14 +17,19 @@ interface Cine {
     templateUrl: './cines-list.component.html'
 })
 export class CinesListComponent {
-    cines: Cine[] = [
-        { id: 1, nombre: 'Cine Majestic', direccion: 'Zona 10', administrador: 'Sofía Orozco' },
-        { id: 2, nombre: 'Cine Central', direccion: 'Zona 1', administrador: 'Luis Pérez' }
-    ];
+    cines: Cine[] = [];
+    constructor(private cineService: CinesService) { }
 
+    ngOnInit() {
+        this.cineService.listar().subscribe(data => {
+            this.cines = data;
+        });
+    }  
     eliminar(id: number) {
-        if (confirm('¿Eliminar este cine?')) {
+        if (confirm('¿Eliminar cine?')) {
+          this.cineService.eliminar(id).subscribe(() => {
             this.cines = this.cines.filter(c => c.id !== id);
+          });
         }
-    }
+      }
 }

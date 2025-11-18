@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Router, ActivatedRoute } from '@angular/router';
+import { CinesService } from '../../../core/services/cines.service';
 
 @Component({
     selector: 'app-cine-form',
@@ -10,21 +11,27 @@ import { RouterModule, Router, ActivatedRoute } from '@angular/router';
     templateUrl: './cine-form.component.html'
 })
 export class CineFormComponent {
-    cine = { id: 0, nombre: '', direccion: '', administrador: '' };
+    cine = { nombre: '', direccion: '', cartera: 0 };
     modoEdicion = false;
 
-    constructor(private router: Router, private route: ActivatedRoute) { }
+    constructor(private cineService: CinesService,
+        private router: Router,
+    private route: ActivatedRoute) { }
 
     ngOnInit() {
-        const id = this.route.snapshot.params['id'];
+        const id = +this.route.snapshot.params['id'];
+
         if (id) {
             this.modoEdicion = true;
-            this.cine = { id: +id, nombre: 'Cine Majestic', direccion: 'Zona 10', administrador: 'Sofía Orozco' };
+            this.cineService.listar().subscribe(cines => {
+                const c = cines.find(x => x.id === id);
+                this.cine = c || { nombre: '', direccion: '', cartera: 0 };
+            });
         }
     }
-
     guardar() {
-        alert(`Cine ${this.modoEdicion ? 'actualizado' : 'creado'} correctamente`);
-        this.router.navigate(['/admin-sistema/cines']);
+        this.cineService.crear(this.cine).subscribe(() => {
+            this.router.navigate(['/admin-sistema/cines']);
+        });
     }
 }
